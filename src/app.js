@@ -12,12 +12,15 @@ app.use(morgan('dev'))
 app.use(helmet())
 app.use(compression())
 //init db
+require('./dbs/init.mongodb')
+const { checkOverLoad } = require('./helpers/check.connect')
+// checkOverLoad()
 //init route
 app.get('/', (req, res, next) => {
-  const strCompress = 'Hello javascript'
-  return res.status(500).json({
+  // const strCompress = 'Hello javascript'
+  return res.status(200).json({
     message: 'wellcome javascript',
-    metadata: strCompress.repeat(100000),
+    // metadata: strCompress.repeat(10),
   })
 })
 //handing error
